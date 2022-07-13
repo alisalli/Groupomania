@@ -1,0 +1,14 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<form class="login-form" [formGroup]="loginForm" *ngIf="!loading">
+  <h3>Connexion</h3>
+
+  <label for="username">Email</label>
+  <input type="text" placeholder="Email" id="username" formControlName="email">
+
+  <label for="password">Mot de passe</label>
+  <input type="password" placeholder="Password" id="password" formControlName="password">
+
+  <button class="login" [disabled]="loginForm.invalid" (click)="onLogin()" aria-label="Se connecter">Se connecter</button>
+  <p class="text-danger" *ngIf="errorMsg">{{ errorMsg }}</p>
+  <p class="singup">Vous n'avez pas encore un compte? <a routerLink="/signup">Inscrivez-vous</a></p>
+</form>

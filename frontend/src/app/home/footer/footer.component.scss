@@ -1,0 +1,21 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  background: white;
+  width: auto;
+  box-shadow: 0px -5px #ffd7d7;
+  height: 120px;
+}
+
+.logo {
+  max-width: 300px;
+}
+.logo-center {
+  text-align: center;
+  margin:auto;
+  display:flex;
+  flex-direction: column;
+}
+

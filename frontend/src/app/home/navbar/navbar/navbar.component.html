@@ -1,0 +1,13 @@
+<mat-toolbar class="toolbar">
+  <img src="assets/icon-left-font.png" alt="icone logo" class="logo" /> <span class="example-spacer"></span>
+  <button *ngIf="isAuth$ | async" mat-icon-button [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu">
+    <mat-icon>person</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onLogout()" aria-label="Se déconnecter">
+      <span>Se déconnecter</span>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

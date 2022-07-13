@@ -1,0 +1,56 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.example-card {
+  //max-width: 600px;
+  //top: 10vw;
+  //left: 10vw;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.full-width {
+  width: 100%;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 100% !important;
+}
+
+::ng-deep .mat-card-title {
+  width: 100%;
+}
+
+::ng-deep .mat-card-header-text {
+  width: 100%;
+}
+.image-upload {
+  max-height: 250px;
+  display:block;
+  margin-top:10px;
+  margin-bottom: 10px;
+}
+.publish{
+  background-color: #FD2D01;
+}
+input[type="file"] {
+  display: none;
+}
+.add-image{
+  background-color: #4E5166;
+}
+@media screen and (max-width: 500px) {
+  .container-responsif {
+    max-width: 400px;
+    margin-inline: auto;
+  }
+  }
+  @media all and (min-width: 501px) and (max-width: 800px) {
+    .container-responsif {
+      max-width: 600px;
+      margin-inline: auto;
+    }
+    }
