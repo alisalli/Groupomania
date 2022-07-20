@@ -11,7 +11,7 @@ export class AuthService {
   public authToken = '';
   public userId = '';
   public userEmail = '';
-  userAdminID = '62991f3a5d7df253f8e72d83';
+  userAdminID = '62d841582a3205eb840aed67';
 
   constructor(private http: HttpClient, private router: Router) {}
 
