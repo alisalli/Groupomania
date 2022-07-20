@@ -36,3 +36,6 @@ node server
 DB_USER = (non d'utilisateur de votre base de données)
 
 DB_PASSWORD = ( mot de passe de votre base de données)
+
+Login pour ADMIN = ali@hotmail.com
+Mot de passe = Ali9500!
