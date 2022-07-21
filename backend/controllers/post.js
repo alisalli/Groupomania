@@ -1,7 +1,9 @@
+//--Logique métier des routes
 const Post = require('../models/post');
+//--Donne accès aux fonctions qui permettent de modifier le système de fichier y compris les fonctions qui permettent de supprimer
 const fs = require('fs');
 
-
+//**********Création d'un post
 exports.createPost = (req, res, next) => {
     const postObject = JSON.parse(req.body.post);
     delete postObject._id;
@@ -22,6 +24,7 @@ exports.createPost = (req, res, next) => {
         }));
 };
 
+//**********Récupération d'un post
 exports.getOnePost = (req, res, next) => {
     Post.findOne({
         _id: req.params.id
@@ -38,21 +41,22 @@ exports.getOnePost = (req, res, next) => {
     );
 };
 
+//*** Modification d'un POST ***//
 exports.modifyPost = (req, res, next) => {
     const postId = req.params.id;
     console.log(req.body);
     if (req.file) {
 
-        Post.findById(postId) // search the post which its id = prodId
+        Post.findById(postId)// //--Récupération du post dans la base et vérification qu'il appartient bien à la personne qui effectue la requête delete et autorisation à l'administrateur
             .then((post) => {
-
-                const filename = post.imageUrl.split("/images/")[1];
+//--Suppression de lancienne image dans le système de fichier
+                const filename = post.imageUrl.split("/images/")[1]; //--Nom de l'ancien post
                 const sentImageUrl = `${req.protocol}://${req.get("host")}/images/${
                 req.file.filename
             }`;
                 console.log(sentImageUrl);
-                fs.unlink(`images/${filename}`, () => {
-                    Post.updateOne({
+                fs.unlink(`images/${filename}`, () => { 
+                    Post.updateOne({ //--Mise à jour de la post
                             _id: postId
                         }, {
                             ...JSON.parse(req.body.post),
@@ -81,6 +85,7 @@ exports.modifyPost = (req, res, next) => {
     }
 };
 
+//**********Suppression d'un post
 exports.deletePost = (req, res, next) => {
     Post.findOne({
             _id: req.params.id
@@ -104,6 +109,7 @@ exports.deletePost = (req, res, next) => {
         }));
 };
 
+//**********Récupération de tous les posts
 exports.getAllPosts = (req, res, next) => {
     Post.find().then(
         (posts) => {
@@ -118,6 +124,7 @@ exports.getAllPosts = (req, res, next) => {
     );
 };
 
+//**********Likes
 exports.likePost = (req, res, next) => {
     const {
         userId,

@@ -1,7 +1,8 @@
+// Importation de Mongoose
 const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
-  userId: {
+  userId: { //-- l'identifiant MongoDB unique de l'utilisateur qui a créé le post
     type: String,
     required: true
   },
@@ -13,15 +14,15 @@ const postSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  imageUrl: {
+  imageUrl: { //-- l'URL de l'image à téléchargée par l'utilisateur
     type: String,
     required: true
   },
-  likes: {
+  likes: { //-- nombre d'utilisateurs qui aiment (= likent) le post
     type: Number,
     required: true
   },
-  usersLiked: {
+  usersLiked: { //-- tableau des identifiants des utilisateurs qui ont aimé (= liked) le post
     type: ["String <userId>"],
     required: true
   },

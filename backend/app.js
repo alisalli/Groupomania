@@ -1,17 +1,19 @@
+//__________________________________________Gestion de l'app_____________________________//
+//Importations des outils express et mongoose
 const express = require('express');
 require('dotenv').config()
 
 const app = express();
 app.use(express.json());
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //--BDD
 const userRoutes = require('./routes/user');
 const postRoutes = require('./routes/post');
-const path = require('path');
+const path = require('path'); // Importation de path
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 
 
-
+//--Connection à la base de données
 mongoose.connect('mongodb+srv://Aslan95:ASlanim95@sauce.izkmo.mongodb.net/?retryWrites=true&w=majority', {
         useNewUrlParser: true,
         useUnifiedTopology: true
@@ -35,7 +37,7 @@ const limiter = rateLimit({
 // Apply the rate limiting middleware to all requests
 app.use(limiter);
 
-//CORS authorization
+//--En-tête de sécurité CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -45,10 +47,10 @@ app.use((req, res, next) => {
 });
 
 
-
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use('/api/auth', userRoutes);
-app.use('/api/post', postRoutes);
+// configuration du dossier "images" qui accueillera les images des sauces et qui sera mis à jour
+app.use('/images', express.static(path.join(__dirname, 'images')));  //--driname : Importation de node appelée path qui nous donne accès au chemin de notre système de fichier
+app.use('/api/auth', userRoutes); //Racine de tout ce qui est lié à l'authentification
+app.use('/api/post', postRoutes); //Racine de tout ce qui est lié aux posts
 
 app.use((req, res) => {
     res.json({
@@ -56,4 +58,5 @@ app.use((req, res) => {
     });
 });
 
+// Exportation
 module.exports = app;

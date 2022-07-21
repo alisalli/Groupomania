@@ -1,7 +1,9 @@
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+//--Cryptage des mots de passes
+const bcrypt = require('bcrypt'); //--Fonction de hachage ou Package de chiffrement
+const jwt = require('jsonwebtoken'); //--permet l'échange sécurisé de jetons entre plusieurs parties pour vérifier l’authenticité et l’intégrité des données
 const User = require('../models/user');
 
+//--Enregistrement de nouveaux utilisateurs
 exports.signup = (req, res, next) => {
   bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -22,6 +24,7 @@ exports.signup = (req, res, next) => {
       error
     }));
 };
+//--Connecter un utilisateur existant
 exports.login = (req, res, next) => {
   User.findOne({
       email: req.body.email
@@ -45,8 +48,8 @@ exports.login = (req, res, next) => {
             token: jwt.sign({
                 userId: user._id
               },
-              'RANDOM_TOKEN_SECRET', {
-                expiresIn: '24h'
+              'RANDOM_TOKEN_SECRET', { // Clé secrète pour l'encodage
+                expiresIn: '24h' // Le token expirera au bout de 24h
               }
             )
           });
