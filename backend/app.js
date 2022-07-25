@@ -14,7 +14,7 @@ const rateLimit = require('express-rate-limit');
 
 
 //--Connection à la base de données
-mongoose.connect('mongodb+srv://Aslan95:ASlanim95@sauce.izkmo.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect(process.env.SECRET_DB, {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
