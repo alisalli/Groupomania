@@ -44,7 +44,7 @@ exports.getOnePost = (req, res, next) => {
 //*** Modification d'un POST ***//
 exports.modifyPost = (req, res, next) => {
     const postId = req.params.id;
-    console.log(req.body);
+    //console.log(req.body);
     if (req.file) {
 
         Post.findById(postId)// //--Récupération du post dans la base et vérification qu'il appartient bien à la personne qui effectue la requête delete et autorisation à l'administrateur
@@ -54,7 +54,7 @@ exports.modifyPost = (req, res, next) => {
                 const sentImageUrl = `${req.protocol}://${req.get("host")}/images/${
                 req.file.filename
             }`;
-                console.log(sentImageUrl);
+                //console.log(sentImageUrl);
                 fs.unlink(`images/${filename}`, () => { 
                     Post.updateOne({ //--Mise à jour de la post
                             _id: postId
