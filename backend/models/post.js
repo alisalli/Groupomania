@@ -1,6 +1,6 @@
 // Importation de Mongoose
 const mongoose = require('mongoose');
-
+// Model des post
 const postSchema = mongoose.Schema({
   userId: { //-- l'identifiant MongoDB unique de l'utilisateur qui a créé le post
     type: String,
@@ -35,5 +35,5 @@ const postSchema = mongoose.Schema({
     default: false
   }
 });
-
+// Exportation du model 'post'
 module.exports = mongoose.model('post', postSchema);
